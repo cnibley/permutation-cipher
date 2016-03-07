@@ -8,8 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.heynt.permutation.types.LetterFrequenciesMap;
 
@@ -85,7 +84,7 @@ public class Handler
                 // TODO Add more cases to test
 
             default:
-                LOGGER.error("Key mapping method" + mapMethod + " is not supported");
+                LOGGER.warning("Key mapping method" + mapMethod + " is not supported");
         }
         return keyMapReturn;
     }
@@ -104,7 +103,7 @@ public class Handler
     {
         if (str == null)
         {
-            LOGGER.error("User input is null!");
+            LOGGER.warning("User input is null!");
             System.exit(1);
         }
 
@@ -112,7 +111,7 @@ public class Handler
         boolean isLowerCase = str.equals(str.toLowerCase());
         if (!isLowerCase)
         {
-            LOGGER.error("User input is not all lowerCase!");
+            LOGGER.warning("User input is not all lowerCase!");
             System.exit(1);
         }
         // Could also check for special chars with regex

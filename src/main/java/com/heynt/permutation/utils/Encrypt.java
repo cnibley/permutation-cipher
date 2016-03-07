@@ -1,10 +1,7 @@
 package com.heynt.permutation.utils;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.function.IntConsumer;
-import java.util.stream.IntStream;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
@@ -23,7 +20,7 @@ public class Encrypt
         Integer messageIndex = 0;
         while (iter.hasNext())
         {
-            Boolean isFirstLetter = true;
+            Boolean isNewWord = true;
             Character letter = iter.next();
             
             if (letter == '\n') // end
@@ -34,11 +31,11 @@ public class Encrypt
             else if (letter == ' ') // space
             {
                 cipherTextBuilder.append(' ');
-                isFirstLetter = true;
+                isNewWord = true;
             }
             else // We are continuing a word
             {
-                if (messageIndex > 0 && !isFirstLetter)
+                if (!isNewWord)
                 {
                     cipherTextBuilder.append(',');
                 }
@@ -49,7 +46,7 @@ public class Encrypt
                 String key = schedulingAlgorithm(messageIndex, possibleValuesList);
                 cipherTextBuilder.append(key);
             }
-            isFirstLetter = false;
+            isNewWord = false;
             ++messageIndex;
         }
 
