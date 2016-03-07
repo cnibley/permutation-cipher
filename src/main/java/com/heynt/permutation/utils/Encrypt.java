@@ -44,6 +44,12 @@ public class Encrypt
 
                 // TODO Can extend listPicker to use a different picking algorithm for a value
                 String key = schedulingAlgorithm(messageIndex, possibleValuesList);
+
+                // key values less than 10 need a zero prepended (for example, 7 becomes 07)
+                if (Integer.valueOf(key) < 10)
+                {
+                    key = '0' + key;
+                }
                 cipherTextBuilder.append(key);
             }
             isNewWord = false;
