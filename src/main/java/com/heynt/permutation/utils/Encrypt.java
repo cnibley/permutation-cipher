@@ -2,6 +2,7 @@ package com.heynt.permutation.utils;
 
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
@@ -9,6 +10,8 @@ import com.google.common.collect.UnmodifiableListIterator;
 
 public class Encrypt
 {
+    private static final Logger LOGGER = Logger.getLogger(Encrypt.class.getName());
+
     public String EncryptString(final String plaintext, Map<Character, List<Integer>> keymap)
     {
         // The ciphertext output
@@ -17,30 +20,42 @@ public class Encrypt
         // Walk the plaintext and encode each letter
         ImmutableList<Character> chars = Lists.charactersOf(plaintext);
         UnmodifiableListIterator<Character> iter = chars.listIterator();
+
+        if (chars.get(0) == ' ')
+        {
+            LOGGER.warning("Cant start the plaintext message with a space. Exiting.");
+            System.exit(1);
+        }
+
+        /* keeps track of the index into the entire message */
         Integer messageIndex = 0;
         while (iter.hasNext())
         {
-            Boolean isNewWord = true;
-            Character letter = iter.next();
-            
-            if (letter == '\n') // end
+            Character prevChar = new Character(' ');
+            if (iter.hasPrevious())
+            {
+                prevChar = iter.previous();
+                iter.next();
+            }
+            Character currentChar = iter.next();
+
+            if (currentChar == '\n') // end
             {
                 break;
             }
-            
-            else if (letter == ' ') // space
+            else if (currentChar == ' ') // space
             {
                 cipherTextBuilder.append(' ');
-                isNewWord = true;
             }
             else // We are continuing a word
             {
-                if (!isNewWord)
+                // Suppress printing an extra comma at very beginning or start of a new word
+                if (!prevChar.equals(' '))
                 {
                     cipherTextBuilder.append(',');
                 }
                 // Get list of possible numbers from the map
-                List<Integer> possibleValuesList = keymap.get(letter);
+                List<Integer> possibleValuesList = keymap.get(currentChar);
 
                 // TODO Can extend listPicker to use a different picking algorithm for a value
                 String key = schedulingAlgorithm(messageIndex, possibleValuesList);
@@ -52,7 +67,6 @@ public class Encrypt
                 }
                 cipherTextBuilder.append(key);
             }
-            isNewWord = false;
             ++messageIndex;
         }
 
