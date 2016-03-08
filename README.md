@@ -1,9 +1,9 @@
 # Permutation-Cipher
-A custom permutation cipher.
+A custom permutation cipher. This cipher is immune to frequency analysis attacks.
 
 The permutation cipher works as follows. It takes as input a plaintext from a message space and a key randomly chosen from a key space and returns a ciphertext.
 
-    The message space is the set {<space>,a,..,z}^L. In other words the message m can be written as m[1]...m[L], where each m[i] is in {(space>,a,..,z}
+    The message space is the set {<space>,a,..,z}^L. In other words the message m can be written as m[1]...m[L], where each m[i] is in {<space>,a,...,z}
 
     The ciphertext c can be written as c[1],...,c[L], where each c[i] is in {<space>,0,..,102}. To avoid ambiguities, cyphertext symbols are separated by a comma.
 
@@ -45,29 +45,28 @@ For instance, assume k(b,1)=23, k(c,1)=11, k(c,2)=98, k(c,3)=5, k(g,1)=34, k(g,2
 |        z        	|        1       	|                                                                	|
 
 
-#### Screenshot
-![Screenshot software](http://url/screenshot-software.png "screenshot software")
-
-## Download
+## Download ZIP
 * [Version 0.1](https://github.com/cnibley/permutation-cipher/archive/master.zip)
 
 ## Build
 * Install Build Environoment Maven 3.3.9 or later from: [Maven](https://maven.apache.org/download.cgi)
-* Install Maven plugins for Eclipse or preferred IDE.
-* The pom.xml file defines the build instructions. It will generate a JAR in the root directory of the project.
+* From the root folder run Maven: 
+```$ mvn clean install```
+* A JAR will be built in the root directory of the project.
 
-## Usage
+## Command Line Usage
 * Install Java 1.8 JDK from: [1.8 JDK](http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html)
 * To run the jar from the command line:
 ```$ java -jar permutation-cipher-0.0.1-SNAPSHOT.jar
 ...```
-* OR run the Main.java main class within your IDE.
 
-Download Source:
+## Run Within IDE (optional)
+* Install Maven plugins for Eclipse or other preferred IDE.
+* Build the project then run the src/main/java/com/heynt/permutation/main/Main.java main class within your IDE.
+
+## Download Source:
 ```$ git clone https://github.com/cnibley/permutation-software.git
 ...```
-
-## Contributors
 
 ### Contributors on GitHub
 * [Contributors](https://github.com/cnibley/permutation-cipher/graphs/contributors)
@@ -89,10 +88,7 @@ Download Source:
 
 ## Contact
 #### Charley Nibley
-* Homepage: 
-* e-mail: 
-* Twitter: [@cnibley](https://twitter.com/twitterhandle "twitterhandle on twitter")
-* other communication/social media
+* Twitter: [@cnibley](https://twitter.com/cnibley "twitterhandle on twitter")
 
 <!--
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=username&url=https://github.com/cnibley/permutation-cipher&title=permuation-cipher&language=en&tags=github&category=software) -->
