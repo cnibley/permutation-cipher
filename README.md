@@ -71,9 +71,6 @@ For instance, assume k(b,1)=23, k(c,1)=11, k(c,2)=98, k(c,3)=5, k(g,1)=34, k(g,2
 ### Contributors on GitHub
 * [Contributors](https://github.com/cnibley/permutation-cipher/graphs/contributors)
 
-### Translations
-* [Transifex](https://www.transifex.com/projects/p/sw-name/)
-
 ### Third party libraries
 * see [LIBRARIES](https://github.com/cnibley/permutation-cipher/blob/master/LIBRARIES.md) files
 
@@ -83,12 +80,9 @@ For instance, assume k(b,1)=23, k(c,1)=11, k(c,2)=98, k(c,3)=5, k(g,1)=34, k(g,2
 ## Version 
 * Version 0.1
 
-## How-to use this code
-* see [INSTRUCTIONS](https://github.com/username/sw-name/blob/master/INSTRUCTIONS.md) file
-
 ## Contact
 #### Charley Nibley
-* Twitter: [@cnibley](https://twitter.com/cnibley "twitterhandle on twitter")
+* Twitter: [@cnibley](https://twitter.com/cnibley "cnibley on twitter")
 
 <!--
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=username&url=https://github.com/cnibley/permutation-cipher&title=permuation-cipher&language=en&tags=github&category=software) -->
