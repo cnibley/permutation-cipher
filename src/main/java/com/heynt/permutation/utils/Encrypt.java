@@ -86,5 +86,4 @@ public class Encrypt
         Integer lengthList = possibleValuesList.size();
         return possibleValuesList.get( j % lengthList ).toString();
     }
-
 }

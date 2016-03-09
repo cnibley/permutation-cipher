@@ -10,6 +10,9 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
+import com.google.common.collect.UnmodifiableListIterator;
 import com.heynt.permutation.types.LetterFrequenciesMap;
 
 /**
@@ -84,7 +87,7 @@ public class Handler
                 // TODO Add more cases to test
 
             default:
-                LOGGER.warning("Key mapping method" + mapMethod + " is not supported");
+                LOGGER.warning("Key mapping method " + mapMethod + " is not supported");
         }
         return keyMapReturn;
     }
@@ -115,5 +118,15 @@ public class Handler
             System.exit(1);
         }
         // Could also check for special chars with regex
+    }
+    
+    public void printFormattedMessage(String str)
+    {
+        // The ciphertext output
+        StringBuilder sb = new StringBuilder();
+        ImmutableList<Character> chars = Lists.charactersOf(str);
+        UnmodifiableListIterator<Character> iter = chars.listIterator();
+
+        //TODO
     }
 }
