@@ -6,11 +6,11 @@ import java.util.TreeMap;
 
 public class LetterFrequenciesMap
 {
-    public static Map<Character, Integer> MAP = new TreeMap<Character, Integer>();
+    public static Map<Character, Integer> MAP = new TreeMap<>();
 
     static
     {
-        Map<Character, Integer> map = new TreeMap<Character, Integer>();
+        Map<Character, Integer> map = new TreeMap<>();
         map.put('a', 8);
         map.put('b', 1);
         map.put('c', 3);
