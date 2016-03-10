@@ -61,7 +61,18 @@ For instance, assume k(b,1)=23, k(c,1)=11, k(c,2)=98, k(c,3)=5, k(g,1)=34, k(g,2
 ...```
 
 ## Run Within IDE (optional)
-* Install Maven plugins for Eclipse or other preferred IDE.
+* Using Maven in Eclipse for Java Developers
+------------------------------------------
+If m2e (Maven plugin) is not built into Eclipse, follow these steps to install the plugin:
+
+  * Open Eclipse.
+  * Go to Help -> Eclipse Marketplace.
+  * Search for Maven.
+  * Click "Install" button at "Maven Integration for Eclipse" or "m2e" section.
+  * Follow the instruction step by step.,
+
+Restart Eclipse after installing m2e.
+
 * Build the project then run the src/main/java/com/heynt/permutation/main/Main.java main class within your IDE.
 
 ## Download Source:
