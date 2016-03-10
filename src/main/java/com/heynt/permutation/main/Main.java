@@ -1,7 +1,10 @@
 package com.heynt.permutation.main;
 
+import java.text.Collator;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 
 import com.heynt.permutation.utils.Encrypt;
 import com.heynt.permutation.utils.Handler;
@@ -28,6 +31,8 @@ public class Main
             System.out.println("The encrypted message is: ");
             System.out.println(cipherText);
         }
+        // sorted alphabetically
+        Collection<String> dictionary = new TreeSet<String>(Collator.getInstance());
 
         System.exit(0);
     }
