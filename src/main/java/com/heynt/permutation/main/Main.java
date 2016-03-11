@@ -1,39 +1,58 @@
 package com.heynt.permutation.main;
 
+import java.awt.EventQueue;
 import java.text.Collator;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 
+import javax.swing.JOptionPane;
+
+import org.apache.commons.lang3.exception.ExceptionUtils;
+
+import com.heynt.permutation.ui.PermCipherUI;
 import com.heynt.permutation.utils.Encrypt;
 import com.heynt.permutation.utils.Handler;
 
-public class Main
-{
-    public static void main( String[] args )
-    {
-        Handler inputHandler = Handler.getInstance();
+public class Main {
+	public static void main(String[] args) {
 
-        String plaintext = inputHandler.getNewInputFromStdin();
-        inputHandler.validateUserInput(plaintext);
+		if ("true".equalsIgnoreCase(System.getProperty("use-ui"))) {
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						new PermCipherUI();
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(null,
+								"Unexpected Error Occurred: " + ExceptionUtils.getStackTrace(e));
+						e.printStackTrace(System.err);
+					}
+				}
+			});
+		} else {
+			Handler inputHandler = Handler.getInstance();
 
-        // keyMap defines how plaintext letters map to ciphertext
-        // TODO We could add different mappings as case statements in the getKeyMap method
-        Map<Character, List<Integer>> keymap = inputHandler.getKeyMap(1);
+			String plaintext = inputHandler.getNewInputFromStdin();
+			inputHandler.validateUserInput(plaintext);
 
-        Encrypt encryptor = new Encrypt();
-        String cipherText = encryptor.EncryptString(plaintext, keymap);
+			// keyMap defines how plaintext letters map to ciphertext
+			// TODO We could add different mappings as case statements in the
+			// getKeyMap method
+			Map<Character, List<Integer>> keymap = inputHandler.getKeyMap(1);
 
-        // Display the encrypted message
-        if (cipherText != null)
-        {
-            System.out.println("The encrypted message is: ");
-            System.out.println(cipherText);
-        }
-        // sorted alphabetically
-        Collection<String> dictionary = new TreeSet<String>(Collator.getInstance());
+			Encrypt encryptor = new Encrypt();
+			String cipherText = encryptor.EncryptString(plaintext, keymap);
 
-        System.exit(0);
-    }
+			// Display the encrypted message
+			if (cipherText != null) {
+				System.out.println("The encrypted message is: ");
+				System.out.println(cipherText);
+			}
+			// sorted alphabetically
+			Collection<String> dictionary = new TreeSet<String>(Collator.getInstance());
+
+			System.exit(0);
+		}
+	}
 }
