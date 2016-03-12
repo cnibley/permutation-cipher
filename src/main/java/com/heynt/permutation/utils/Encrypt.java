@@ -12,7 +12,7 @@ public class Encrypt
 {
     private static final Logger LOGGER = Logger.getLogger(Encrypt.class.getName());
 
-    public String EncryptString(final String plaintext, Map<Character, List<Integer>> keymap)
+    public String encryptString(final String plaintext, Map<Character, List<Integer>> keymap, String algType)
     {
         // The ciphertext output
         StringBuilder cipherTextBuilder = new StringBuilder();
@@ -58,7 +58,7 @@ public class Encrypt
                 List<Integer> possibleValuesList = keymap.get(currentChar);
 
                 // TODO Can extend listPicker to use a different picking algorithm for a value
-                String key = schedulingAlgorithm(messageIndex, possibleValuesList);
+                String key = schedulingAlgorithm(messageIndex, possibleValuesList, algType);
 
                 // key values less than 10 need a zero prepended (for example, 7 becomes 07)
                 if (Integer.valueOf(key) < 10)
@@ -75,15 +75,20 @@ public class Encrypt
     
     /**
      * This method defines how the encryption algorithm picks a ciphertext from a list of possible values
+     * @param algType 
      * 
      */
-    private String schedulingAlgorithm(Integer messageIndex, List<Integer> possibleValuesList)
+    private String schedulingAlgorithm(Integer messageIndex, List<Integer> possibleValuesList, String algType)
     {
         // TODO Extend this so that different picking algorithms can be used
 
         // “j mod length(list)” where j = index in the plaintext message
         Integer j = messageIndex;
         Integer lengthList = possibleValuesList.size();
+        if("1".equals(algType)){
+        	return possibleValuesList.get( j % lengthList ).toString();
+        }
+        //Default
         return possibleValuesList.get( j % lengthList ).toString();
     }
 }

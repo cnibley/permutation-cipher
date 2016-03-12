@@ -102,12 +102,12 @@ public class Handler
      * 
      * @param str
      */
-    public void validateUserInput(String str)
+    public String validateUserInput(String str)
     {
         if (str == null)
         {
             LOGGER.warning("User input is null!");
-            System.exit(1);
+            return "Empty Input";
         }
 
         // Test for lowerCase letters
@@ -115,9 +115,11 @@ public class Handler
         if (!isLowerCase)
         {
             LOGGER.warning("User input is not all lowerCase!");
-            System.exit(1);
+            return "User input is not all lowercase!";
         }
         // Could also check for special chars with regex
+        
+        return null;
     }
     
     public void printFormattedMessage(String str)

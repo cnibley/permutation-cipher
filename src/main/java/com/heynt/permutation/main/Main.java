@@ -1,23 +1,21 @@
 package com.heynt.permutation.main;
 
 import java.awt.EventQueue;
-import java.text.Collator;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
 
 import javax.swing.JOptionPane;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.heynt.permutation.ui.PermCipherUI;
-import com.heynt.permutation.utils.Encrypt;
-import com.heynt.permutation.utils.Handler;
 
 public class Main {
-	public static void main(String[] args) {
 
+	private static final Logger log = LogManager.getLogger(Main.class);
+
+	public static void main(String[] args) {
+		log.info("Starting Perm-Cipher Tool");
 		if ("true".equalsIgnoreCase(System.getProperty("use-ui"))) {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
@@ -30,29 +28,6 @@ public class Main {
 					}
 				}
 			});
-		} else {
-			Handler inputHandler = Handler.getInstance();
-
-			String plaintext = inputHandler.getNewInputFromStdin();
-			inputHandler.validateUserInput(plaintext);
-
-			// keyMap defines how plaintext letters map to ciphertext
-			// TODO We could add different mappings as case statements in the
-			// getKeyMap method
-			Map<Character, List<Integer>> keymap = inputHandler.getKeyMap(1);
-
-			Encrypt encryptor = new Encrypt();
-			String cipherText = encryptor.EncryptString(plaintext, keymap);
-
-			// Display the encrypted message
-			if (cipherText != null) {
-				System.out.println("The encrypted message is: ");
-				System.out.println(cipherText);
-			}
-			// sorted alphabetically
-			Collection<String> dictionary = new TreeSet<String>(Collator.getInstance());
-
-			System.exit(0);
 		}
 	}
 }

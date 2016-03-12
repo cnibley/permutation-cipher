@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="fatal" monitorInterval="60">
+	<Properties>
+		<!-- Change this appropriately -->
+		<Property name="log-path">perm-cipher/logs</Property>
+	</Properties>
+	<Appenders>
+		<RollingFile name="RollingFile" fileName="${log-path}/permcipher.log"
+			filePattern="${log-path}/permcipher-%d{yyyy-MM-dd}.log.gz" ignoreExceptions="false">
+			<PatternLayout>
+				<Pattern>%d|%p{length=1}|%c{3}|%M:%L| - %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+			  <SizeBasedTriggeringPolicy size="25 MB" />
+			  <TimeBasedTriggeringPolicy  interval="1" modulate="true" />
+			</Policies>
+		</RollingFile>
+		
+		<Console name="Console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout
+				pattern="%d|%p{length=1}|%c{3}|%M:%L| - %m%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+	<!-- Catch All logging, logs above WARN into console (non-application components go here) -->
+		<Root level="trace">
+			<AppenderRef ref="Console" level="WARN" />
+		</Root>
+		
+		<!-- Section for all Application logging starts (com.heynt)-->
+		<logger name="com.heynt" additivity="false" level="ALL">
+			<!-- 
+			 - Everything INFO and above will go to below, note it goes to Root(Console) also due to additivity 
+			   and get logged in Root Logger if above its configured level-->
+			<AppenderRef ref="RollingFile" level="DEBUG" />
+			<!-- 
+			 - Everything INFO and above will go to below logger (RollingFile) also (note it goes to root also due to additivity)
+			   and get logged in Root Logger if above its configured level.
+			 - Change to Console & DEBUG in Dev environment for developer usage.
+			 - Remove this line to have only async DB logging for INFO -  Above INFO, goes to DB and Root(Console)
+			  -->
+			<AppenderRef ref="Console" level="DEBUG" /> 
+			
+		</logger>
+		
+
+		<!-- Section for all Application logging ends -->
+	</Loggers>
+</Configuration>
